@@ -33,7 +33,7 @@ Running the Program
 
     sh
 
-git clone https://github.com/your-repo/bank-management-system.git
+git clone https://github.com/velpula-manasa/bank-management-system.git
 
 Navigate to the Project Directory:
 

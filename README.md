@@ -1,28 +1,25 @@
-# onlineexamination_CipherByteTechnologies
-
+BankY Management System
 Overview
 
-This project implements a simple console-based exam system in Java. It allows users to log in, update their profiles, change their passwords, and take exams with a set time limit.
+BankY Management System is a console-based banking application written in Java. It provides basic banking functionalities like creating accounts, depositing and withdrawing money, transferring funds between accounts, viewing account statements, and adding interest. The application also includes an admin panel for viewing all accounts and supports data persistence using serialization to save and load account data.
 Features
 
-    User Authentication:
-        Users can log in with a username and password.
-        Simple authentication using a predefined set of users.
-
-    Profile Management:
-        Users can update their profile information.
-        Users can change their password.
-
-    Exams:
-        Users can take an exam with multiple-choice questions.
-        The exam has a time limit, after which it will automatically submit.
+    Create new accounts with an initial balance and a password.
+    Deposit and withdraw funds from accounts.
+    Transfer funds between accounts.
+    View account statements with a transaction history.
+    Add interest to all accounts.
+    Admin panel to view all accounts.
+    Authentication for users and admin.
+    Data persistence to save and load accounts from a file.
 
 Structure
 
-The project consists of two classes:
+The project consists of the following Java classes:
 
-    ExamSystem: The main class that handles the application's logic and user interactions.
-    User: A class representing a user with attributes for username, password, and profile information.
+    Account: Represents a bank account with basic functionalities.
+    Bank: Manages multiple accounts and provides banking operations.
+    BankY: The main class that provides the user interface for interacting with the bank.
 
 Getting Started
 Prerequisites
@@ -36,93 +33,130 @@ Running the Program
 
     sh
 
-git clone https://github.com/your-repo/exam-system.git
+git clone https://github.com/your-repo/bank-management-system.git
 
 Navigate to the Project Directory:
 
 sh
 
-cd exam-system
+cd bank-management-system
 
 Compile the Java Files:
 
 sh
 
-javac com/exam/*.java
+javac Account.java Bank.java BankY.java
 
 Run the Main Class:
 
 sh
 
-    java com.exam.ExamSystem
+    java BankY
 
 Usage
 Main Menu
 
-    Login:
-        Prompts the user to enter their username and password.
-        If credentials are valid, the user is logged in and the main menu is displayed.
+When you run the program, you will see the following menu:
+
+markdown
+
+Welcome to BankY
+1. Create Account
+2. Deposit
+3. Withdraw
+4. Transfer
+5. View Account Statement
+6. Add Interest
+7. Admin Panel
+8. Exit
+Choose an option: 
+
+Options
+
+    Create Account:
+        Enter the account name, initial balance, and a password to create a new account.
+
+    Deposit:
+        Enter the account name and password to authenticate.
+        Enter the amount to deposit into the account.
+
+    Withdraw:
+        Enter the account name and password to authenticate.
+        Enter the amount to withdraw from the account.
+
+    Transfer:
+        Enter the source account name and password to authenticate.
+        Enter the destination account name and the amount to transfer.
+
+    View Account Statement:
+        Enter the account name and password to authenticate.
+        View the transaction history of the account.
+
+    Add Interest:
+        Add a predefined interest rate (3%) to all accounts.
+
+    Admin Panel:
+        Enter the admin password to authenticate.
+        View all accounts and their details.
+
     Exit:
-        Exits the application.
+        Save all account data to a file.
+        Exit the program.
 
-User Menu
+Data Persistence
 
-    Update Profile:
-        Allows the user to update their profile information.
-    Update Password:
-        Allows the user to change their password.
-    Take Exam:
-        Presents the user with a series of multiple-choice questions.
-        The user must answer within the specified time limit (60 seconds by default).
-        The exam is automatically submitted when the time limit is reached or the user finishes answering all questions.
-    Logout:
-        Logs the user out and returns to the main menu.
+    The application saves account data to a file named accounts.txt using serialization.
+    On startup, the application loads account data from this file if it exists.
 
-Code Overview
-ExamSystem Class
+Saving Accounts
 
-    Main Method:
-        Displays the main menu and handles user input.
-        Manages user authentication and navigation to the user menu.
+java
 
-    Login Method:
-        Prompts the user for their username and password.
-        Validates the credentials and sets the currentUser.
+bank.saveAccounts();
 
-    Show Menu Method:
-        Displays the user menu and handles user input for profile management and exams.
+    This method serializes the accounts map and writes it to the file accounts.txt.
 
-    Update Profile Method:
-        Allows the user to update their profile information.
+Loading Accounts
 
-    Update Password Method:
-        Allows the user to change their password.
+java
 
-    Take Exam Method:
-        Presents multiple-choice questions to the user.
-        Uses a timer to enforce the exam's time limit.
-        Submits the exam automatically when the time limit is reached.
+bank.loadAccounts();
 
-    Auto Submit Method:
-        Handles the submission of the exam answers.
-        Can be used to evaluate answers or perform other required actions.
+    This method reads the serialized data from the file accounts.txt and loads it into the accounts map.
 
-User Class
+Example Output
 
-    Attributes:
-        username: The user's username.
-        password: The user's password.
-        profileInfo: Additional profile information.
+markdown
 
-    Methods:
-        Getter and setter methods for username, password, and profileInfo.
+Welcome to BankY
+1. Create Account
+2. Deposit
+3. Withdraw
+4. Transfer
+5. View Account Statement
+6. Add Interest
+7. Admin Panel
+8. Exit
+Choose an option: 1
+Enter account name: John
+Enter initial balance: 1000
+Set a password: pass123
+Account created successfully.
 
-Future Enhancements
-
-    Add more detailed evaluation of exam answers.
-    Store user data persistently using a database or file system.
-    Implement more comprehensive error handling.
-    Add more features such as registration, admin roles, and exam management.
+Welcome to BankY
+1. Create Account
+2. Deposit
+3. Withdraw
+4. Transfer
+5. View Account Statement
+6. Add Interest
+7. Admin Panel
+8. Exit
+Choose an option: 2
+Enter account name: John
+Enter password: pass123
+Enter deposit amount: 500
+Deposit successful. New balance: 1500.0
 
 License
 
